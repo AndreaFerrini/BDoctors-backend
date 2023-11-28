@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('email');
             $table->text('email_body');
             $table->timestamps();
+            $table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('cascade');
         });
     }
 

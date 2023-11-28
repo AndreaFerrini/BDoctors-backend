@@ -14,8 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('doctor_sponsor', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->unsignedBigInteger('doctor_id');
+            $table->unsignedBigInteger('sponsor_id');
+            $table->foreign('doctor_id')->references('id')->on('doctors');
+            $table->foreign('sponsor_id')->references('id')->on('sponsors');
+
+            $table->dateTime('start_date')->nullable();
+            $table->dateTime('end_date')->nullable();
+
+            $table->boolean('valid')->default(true);
         });
     }
 

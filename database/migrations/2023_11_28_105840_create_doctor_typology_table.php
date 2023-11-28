@@ -14,8 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('doctor_typology', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->unsignedBigInteger('doctor_id');
+            $table->unsignedBigInteger('typology_id');
+
+            $table->foreign('doctor_id')->references('id')->on('doctors');
+            $table->foreign('typology_id')->references('id')->on('typologies');
         });
     }
 
