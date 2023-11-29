@@ -15,7 +15,13 @@ return new class extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('doctor_id');
+            $table->string('name');
+            $table->string('surname');
+            $table->string('email');
+            $table->text('email_body');
             $table->timestamps();
+            $table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('cascade');
         });
     }
 
