@@ -101,4 +101,8 @@ return [
         "id" => 25,
         "name" => "Ematologia",
     ],
+    [
+        "id" => 25,
+        "name" => "Urologia",
+    ],
 ];
