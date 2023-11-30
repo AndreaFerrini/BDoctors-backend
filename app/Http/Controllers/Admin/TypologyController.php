@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Doctor;
-use App\Http\Requests\StoreDoctorRequest;
-use App\Http\Requests\UpdateDoctorRequest;
+use App\Http\Controllers\Controller;
+use App\Models\Typology;
+use App\Http\Requests\StoreTypologyRequest;
+use App\Http\Requests\UpdateTypologyRequest;
 
-class DoctorController extends Controller
+class TypologyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,10 +32,10 @@ class DoctorController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreDoctorRequest  $request
+     * @param  \App\Http\Requests\StoreTypologyRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreDoctorRequest $request)
+    public function store(StoreTypologyRequest $request)
     {
         //
     }
@@ -42,10 +43,10 @@ class DoctorController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Doctor  $doctor
+     * @param  \App\Models\Typology  $Typology
      * @return \Illuminate\Http\Response
      */
-    public function show(Doctor $doctor)
+    public function show(Typology $Typology)
     {
         //
     }
@@ -53,10 +54,10 @@ class DoctorController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Doctor  $doctor
+     * @param  \App\Models\Typology  $Typology
      * @return \Illuminate\Http\Response
      */
-    public function edit(Doctor $doctor)
+    public function edit(Typology $Typology)
     {
         //
     }
@@ -64,11 +65,11 @@ class DoctorController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateDoctorRequest  $request
-     * @param  \App\Models\Doctor  $doctor
+     * @param  \App\Http\Requests\UpdateTypologyRequest  $request
+     * @param  \App\Models\Typology  $Typology
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateDoctorRequest $request, Doctor $doctor)
+    public function update(UpdateTypologyRequest $request, Typology $Typology)
     {
         //
     }
@@ -76,10 +77,10 @@ class DoctorController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Doctor  $doctor
+     * @param  \App\Models\Typology  $Typology
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Doctor $doctor)
+    public function destroy(Typology $Typology)
     {
         //
     }
