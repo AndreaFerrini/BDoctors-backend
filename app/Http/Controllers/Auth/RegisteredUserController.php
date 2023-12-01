@@ -15,31 +15,35 @@ use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
 {
-    /**
-     * Display the registration view.
-     */
+    private $validations = [
+        'name'              => 'string|max:50|nullable',
+        'surname'           => 'string|max:50|nullable',
+        'email'             => 'required|string|email|max:255|unique:users',
+        'password'          => 'required|confirmed|min:8',
+    ];
+
+    private $validationMessages = [
+        'required'              => 'Campo obbligatorio.',
+        'min'                   => 'Il campo :attribute deve avere almeno :min caratteri.',
+        'max'                   => 'Il campo :attribute non deve superare i :max caratteri.',
+    ];
+
     public function create(): View
     {
         return view('auth.register');
     }
 
-    /**
-     * Handle an incoming registration request.
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+        $request->validate($this->validations, $this->validationMessages);
+
+        $data = $request->all();
 
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'name' => ucwords($data['name']),
+            'surname' => ucwords($data['surname']),
+            'email' => strtolower($data['email']),
+            'password' => Hash::make($data['password']),
         ]);
 
         event(new Registered($user));
