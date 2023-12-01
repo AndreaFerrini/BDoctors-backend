@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use App\Models\Doctor;
+use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -46,5 +48,26 @@ class User extends Authenticatable
     public function doctor()
     {
         return $this->hasOne(Doctor::class);
+    }
+
+    public function getRouteKey()
+    {
+        return $this->slug;
+    }
+
+    public static function slugger($string)
+    {
+        $baseSlug = Str::slug($string);
+
+        $i = 1;
+
+        $slug = $baseSlug;
+
+        while (User::where('slug', $slug)->first()) {
+            $slug = $baseSlug . '-' . $i;
+            $i++;
+        }
+
+        return $slug;
     }
 }

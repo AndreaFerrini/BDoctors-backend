@@ -5,6 +5,8 @@
     <h2 class="fs-4 text-secondary my-4">
         {{ __('Dashboard') }}
     </h2>
+    <a class="btn px-3 py-1 dash-btn m-3" href="{{ route('admin.doctors.index') }}">
+        Vedi Dottori</a>
     <div class="row justify-content-center">
         <div class="col">
             <div class="card">

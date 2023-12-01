@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\DoctorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +21,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware('auth')->prefix("admin")->name('admin.')->group(function () {
+Route::middleware('auth')
+    ->prefix("admin")
+    ->name('admin.')
+    ->group(function () {
 
     Route::get('/', [AdminController::class, "index"])->name('dashboard');
+
+    Route::resource('doctors', DoctorController::class);
 
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

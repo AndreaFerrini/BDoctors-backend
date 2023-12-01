@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
@@ -19,12 +19,14 @@ class UsersTableSeeder extends Seeder
         $users = config('users');
 
         foreach ($users as $arrUsers){
+            $slug = User::slugger($arrUsers['name']);
             $user = User::create([
 
                 "email"            => $arrUsers ['email'],
                 "password"         => Hash::make($arrUsers['password']),
                 "name"             => $arrUsers ['name'],
-                "surname"         => $arrUsers ['surname'],
+                "surname"          => $arrUsers ['surname'],
+                "slug"             => $slug, 
 
             ]);
             
